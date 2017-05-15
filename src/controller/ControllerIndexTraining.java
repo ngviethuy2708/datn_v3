@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,26 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-
-import bean.Product;
-import library.LibraryConstant;
-import library.LibraryPer;
-import library.TimeConvert;
-import model.modelProduct;
+import bean.Training;
+import model.ModelTraining;
 
 /**
- * Servlet implementation class ControllerAdminIndexUsers
+ * Servlet implementation class ControllerIndexTraining
  */
 
-public class ControllerIndexProduct extends HttpServlet {
+public class ControllerIndexTraining extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ControllerIndexProduct() {
+    public ControllerIndexTraining() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,24 +39,22 @@ public class ControllerIndexProduct extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		modelProduct mPro = new modelProduct();
-		ArrayList<Product> alPro = mPro.getList();
-		for (Product objPro : alPro) {
-			if(objPro.getSale_id() != 0){
-				int curentPrice = mPro.getPriceOfSale(objPro.getId());
-				objPro.setPrice(curentPrice);
-				int discount = mPro.getDiscount(objPro.getId());
-				objPro.setDiscount(discount);
+		ModelTraining mTraining = new ModelTraining();
+		ArrayList<Training> alTraining = mTraining.getListForIndexTraining();
+		for (Training objTraining : alTraining) {
+			if(objTraining.getSaleId() != 0){
+				int curentPrice = mTraining.getPriceOfSale(objTraining.getId());
+				objTraining.setPrice(curentPrice);
+				int discount = mTraining.getDiscount(objTraining.getId());
+				objTraining.setDiscount(discount);
 			}else{
-				int curentPrice = mPro.getPrice(objPro.getId());
-				objPro.setPrice(curentPrice);
-				objPro.setDiscount(0);
+				int curentPrice = mTraining.getPrice(objTraining.getId());
+				objTraining.setPrice(curentPrice);
+				objTraining.setDiscount(0);
 			}
-			float average = mPro.getAverageItem(objPro.getId());
-			objPro.setTbc(average);
 		}
-		request.setAttribute("alProduct", alPro);
-		RequestDispatcher rd = request.getRequestDispatcher("/public/indexProduct.jsp");
+		request.setAttribute("alTraining", alTraining);
+		RequestDispatcher rd = request.getRequestDispatcher("/public/indexTraining.jsp");
 		rd.forward(request, response);
 	}
 

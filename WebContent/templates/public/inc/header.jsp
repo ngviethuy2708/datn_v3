@@ -81,12 +81,12 @@ p.off-price {
                         <div id="navigation">
                             <ul>
                                 <li class="active" ><a style="color:white" href="<%=request.getContextPath() %>/index" title="Home">TRANG CHỦ</a></li>
-                                <li class="active" ><a style="color:white" href="index.html" title="Home">GIỚI THIỆU</a></li>
-                                <li class="active" ><a style="color:white" href="index.html" title="Home">GÓI TẬP</a></li>
+                                <li class="active" ><a style="color:white" href="<%=request.getContextPath() %>/indexIntroduce" title="Home">GIỚI THIỆU</a></li>
+                                <li class="active" ><a style="color:white" href="<%=request.getContextPath() %>/indexTraining" title="Home">GÓI TẬP</a></li>
                                 <li class="active" ><a style="color:white" href="<%=request.getContextPath() %>/indexProduct" title="Home">SẢN PHẨM</a></li>
-                                <li class="active" ><a style="color:white" href="" title="Home" data-toggle="modal" data-target="#Excercises">BÀI TẬP</a></li>
-                                <li class="active" ><a style="color:white" href="index.html" title="Home">TIN TỨC</a></li>
-                                <li class="active" ><a style="color:white" href="index.html" data-toggle="modal" data-target="#signup" title="Home">ĐĂNG KÝ</a></li>
+                                <li class="active" ><a style="color:white" href="javascript:;" title="Home" data-toggle="modal" data-target="#Excercises">BÀI TẬP</a></li>
+                                <li class="active" ><a style="color:white" href="<%=request.getContextPath() %>/indexNews" title="Home">TIN TỨC-SỰ KIỆN</a></li>
+                                <li class="active" ><a style="color:white" href="javascript:;" data-toggle="modal" data-target="#signup" title="Home">ĐĂNG KÝ</a></li>
                                 <%if(objUsers != null && objUsers.isMember() == true){ %>
                                 <li class="active" ><a style="color:white" href="<%=request.getContextPath() %>/historyMember" title="Home">THẺ HỘI VIÊN</a></li>
                                 <%} %>

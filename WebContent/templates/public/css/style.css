@@ -345,7 +345,7 @@ box-shadow: 0px 2px 6px 0px rgba(230,230,230,1);}
 #navigation.align-center > ul > li { display: inline-block; float: none; }
 #navigation.align-center ul ul { text-align: left; }
 #navigation.align-right > ul > li { float: right; }
-#navigation > ul > li > a { padding: 5px 13px; font-size: 14px; color: #474747; text-decoration: none; font-weight: 500; text-transform: uppercase; }
+#navigation > ul > li > a { padding: 5px 10px; font-size: 14px; color: #474747; text-decoration: none; font-weight: 500; text-transform: uppercase; }
 #navigation > ul > li:hover > a { color: #ffffff; background-color: #0eb769; }
 #navigation > ul > li.has-sub > a { padding-right: 32px; }
 

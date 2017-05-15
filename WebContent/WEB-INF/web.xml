@@ -835,7 +835,7 @@
     <servlet-name>ControllerAdminIndexHistoryOrder2</servlet-name>
     <url-pattern>/admin/historyOrder2</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>ControllerAdminSearchOrder</servlet-name>
     <servlet-class>controller.ControllerAdminSearchOrder</servlet-class>
   </servlet>
@@ -843,4 +843,24 @@
     <servlet-name>ControllerAdminSearchOrder</servlet-name>
     <url-pattern>/admin/searchOrder</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ControllerDetailIntroduce</servlet-name>
+    <servlet-class>controller.ControllerDetailIntroduce</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControllerDetailIntroduce</servlet-name>
+    <url-pattern>/detailIntroduce</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ControllerIndexTraining</servlet-name>
+    <servlet-class>controller.ControllerIndexTraining</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControllerIndexTraining</servlet-name>
+    <url-pattern>/indexTraining</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <display-name>Startup</display-name>
+    <listener-class>controller.Startup</listener-class>
+  </listener>
 </web-app>

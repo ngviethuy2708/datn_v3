@@ -1,53 +1,43 @@
 package controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
-import org.apache.jena.base.Sys;
-
-import RecomanderSystems.Matran;
-import bean.AverageProduct;
-import bean.DanhGia;
-import bean.Matrix;
-import bean.Product;
-import bean.User;
 import model.ModelDanhGia;
 import model.ModelUser;
 import model.modelProduct;
+import RecomanderSystems.Matran;
+import bean.AverageProduct;
+import bean.DanhGia;
+import bean.Product;
+import bean.User;
 
-/**
- * Servlet implementation class ControllerRecomanderSystem
- */
-@WebServlet("/ControllerRecomanderSystem")
-public class ControllerRecomanderSystem extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+public class Startup implements ServletContextListener, Runnable {
+
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor. 
      */
-    public ControllerRecomanderSystem() {
-        super();
+    public Startup() {
         // TODO Auto-generated constructor stub
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-	}
+     * @see ServletContextListener#contextDestroyed(ServletContextEvent)
+     */
+    public void contextDestroyed(ServletContextEvent arg0) {
+        
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void contextInitialized(ServletContextEvent arg0) {
+        new Thread(this).start();
+    }
+
+	@Override
+	public void run() {
 		ModelUser mUser = new ModelUser();
 		modelProduct mPro = new modelProduct();
 		ModelDanhGia mDanhGia = new ModelDanhGia();
@@ -109,5 +99,5 @@ public class ControllerRecomanderSystem extends HttpServlet {
 			mDanhGia.addAverage(averageProduct);
 		}
 	}
-
+	
 }

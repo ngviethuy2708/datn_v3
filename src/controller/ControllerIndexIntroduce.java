@@ -13,14 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.jni.Mmap;
 
-import bean.Register;
+import bean.Product;
 import library.LibraryConstant;
 import library.LibraryPer;
 import library.TimeConvert;
-import model.ModelIntroduce;
-import model.ModelNews;
-import model.ModelRegister;
+import model.ModelPost;
 import model.ModelUser;
+import model.modelProduct;
 
 /**
  * Servlet implementation class ControllerAdminIndexUsers
@@ -49,8 +48,9 @@ public class ControllerIndexIntroduce extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ModelIntroduce mIntroduce = new ModelIntroduce();
-		int tongSoDong = mIntroduce.getSum();
+		ModelPost mPost = new ModelPost();
+		modelProduct mPro = new modelProduct();
+		int tongSoDong = mPost.getSumIntroDuce();
 		int soTrang = (int)Math.ceil((float)tongSoDong/LibraryConstant.ROW_COUNT);
 		int currentPage = 1;
 		if(request.getParameter("page") != null){
@@ -59,7 +59,21 @@ public class ControllerIndexIntroduce extends HttpServlet {
 		request.setAttribute("page", currentPage);
 		request.setAttribute("soTrang", soTrang);
 		int offset = (currentPage-1) * LibraryConstant.ROW_COUNT;
-		request.setAttribute("alIntro", mIntroduce.getListForPaginator(offset,LibraryConstant.ROW_COUNT));
+		ArrayList<Product> alPro = mPro.getListForPublic();
+		for (Product objPro : alPro) {
+			if(objPro.getSale_id() != 0){
+				int curentPrice = mPro.getPriceOfSale(objPro.getId());
+				objPro.setPrice(curentPrice);
+				int discount = mPro.getDiscount(objPro.getId());
+				objPro.setDiscount(discount);
+			}else{
+				int curentPrice = mPro.getPrice(objPro.getId());
+				objPro.setPrice(curentPrice);
+				objPro.setDiscount(0);
+			}
+		}
+		request.setAttribute("alProduct", alPro);
+		request.setAttribute("alIntro", mPost.getIntroDuceForPuclic(offset,LibraryConstant.ROW_COUNT));
 		RequestDispatcher rd = request.getRequestDispatcher("/public/indexIntroduce.jsp");
 		rd.forward(request, response);
 	}

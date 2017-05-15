@@ -641,6 +641,42 @@ public class ModelTraining {
 		}
 		return alTraining;
 	}
+	public ArrayList<Training> getListForIndexTraining(){
+		ArrayList<Training> alTraining = new ArrayList<>();
+		conn = mConnect.getConnectSQL();
+		String sql = "SELECT * FROM `training` WHERE active = true ORDER BY id DESC";
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while(rs.next()){
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String preview = rs.getString("preview");
+				String picture = rs.getString("picture");
+				int dayOfTraining = rs.getInt("day_of_training");
+				int priceId = rs.getInt("price_id");
+				int saleId = rs.getInt("sale_id");
+				Date dateCreate = rs.getDate("day_create");
+				Boolean active = rs.getBoolean("active");
+				Training objTraining = new Training(id, name, preview, picture, dayOfTraining, priceId, saleId, dateCreate, active);
+				alTraining.add(objTraining);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				rs.close();
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return alTraining;
+	}
+	
 	/*public int delItem(int tid){
 		int result = 0;
 		String sql = "DELETE FROM trainingschedule WHERE Idtraining = ?";

@@ -33,12 +33,12 @@
                     ArrayList<FitnessExcercises> alEx = (ArrayList<FitnessExcercises>)request.getAttribute("alEx");
                     for(FitnessExcercises objEx : alEx){
                     %>
-                        <div class="col-lg-12 col-sm-12 col-md-12 col-sm-12">
+                        <div class="col-lg-11 col-sm-11 col-md-11 col-sm-11">
                             <div class="post-holder">
                                 <!-- post holder -->
                                 <div class="post-img">
                                     <!-- post img -->
-                                    <a target="_blank" href="<%=request.getContextPath()%>/detailExcercises?id=<%=objEx.getId()%>"><img style="width:100%; height:200px;" src="<%=request.getContextPath() %>/files/<%=objEx.getImage() %>" alt="" class="img-responsive"></a>
+                                    <a target="_blank" href="<%=request.getContextPath()%>/detailExcercises?id=<%=objEx.getId()%>"><img style="width:750px; height:335px;" src="<%=request.getContextPath() %>/files/<%=objEx.getImage() %>" alt="" class="img-responsive"></a>
                                     <div class="post-sticky"></div>
                                 </div>
                                 <!-- /.post img -->
@@ -49,6 +49,11 @@
                                         <h1 class="post-title"><a href="blog-single.html" class="title"><%=objEx.getName() %></a></h1>
                                     </div>
                                     <!-- /.post header -->
+                                    <div class="meta">
+                                            <!-- post meta -->
+                                            <span class="meta-user">by <a href="javacript:;"> Admin </a></span>
+                                            <span class="meta-cat"> Bài tập thể hình </span>
+                                     </div>
                                     <p><%=objEx.getPreview() %></p>
                                     <a href="<%=request.getContextPath()%>/detailExcercises?id=<%=objEx.getId()%>" class="btn btn-default">Chi tiết</a>
                                 </div>

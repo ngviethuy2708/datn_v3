@@ -321,4 +321,124 @@ public class ModelPost {
 		}
 		return alPost;
 	}
+	public ArrayList<Post> getIntroDuceForPuclic(int offset, int rowCount){
+		ArrayList<Post> alPost = new ArrayList<>();
+		conn = mConnect.getConnectSQL();
+		String sql = "SELECT post.*,category_post.name as name_category FROM post join category_post ON post.category_post_id = category_post.id WHERE category_post.id = 2 ORDER BY post.id DESC LIMIT ?,?";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, offset);
+			pst.setInt(2, rowCount);
+			rs = pst.executeQuery();
+			while(rs.next()){
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String image = rs.getString("image");
+				String preview = rs.getString("preview");
+				String detail = rs.getString("detail");
+				int categoryId = rs.getInt("category_post_id");
+				String nameCategory = rs.getString("name_category");
+				Post objP = new Post(id, name, image, preview, detail, categoryId, nameCategory);
+				alPost.add(objP);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				rs.close();
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return alPost;
+	}
+	public ArrayList<Post> getNewsForPuclic(int offset, int rowCount){
+		ArrayList<Post> alPost = new ArrayList<>();
+		conn = mConnect.getConnectSQL();
+		String sql = "SELECT post.*,category_post.name as name_category FROM post join category_post ON post.category_post_id = category_post.id WHERE category_post.id = 1 ORDER BY post.id DESC LIMIT ?,?";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, offset);
+			pst.setInt(2, rowCount);
+			rs = pst.executeQuery();
+			while(rs.next()){
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String image = rs.getString("image");
+				String preview = rs.getString("preview");
+				String detail = rs.getString("detail");
+				int categoryId = rs.getInt("category_post_id");
+				String nameCategory = rs.getString("name_category");
+				Post objP = new Post(id, name, image, preview, detail, categoryId, nameCategory);
+				alPost.add(objP);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				rs.close();
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return alPost;
+	}
+	public int getSumIntroDuce(){
+		int sodong = 0;
+		String sql ="SELECT COUNT(post.id) AS sodong FROM post join category_post ON post.category_post_id = category_post.id WHERE category_post.id = 2";
+		conn = mConnect.getConnectSQL();
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			if(rs.next()){
+				sodong = rs.getInt("sodong");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				rs.close();
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return sodong;
+	}
+	public int getSumNews(){
+		int sodong = 0;
+		String sql ="SELECT COUNT(post.id) AS sodong FROM post join category_post ON post.category_post_id = category_post.id WHERE category_post.id = 1";
+		conn = mConnect.getConnectSQL();
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			if(rs.next()){
+				sodong = rs.getInt("sodong");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				rs.close();
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return sodong;
+	}
 }

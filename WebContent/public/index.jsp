@@ -56,12 +56,12 @@
                         <!-- service block -->
                         <div class="service-img mb20">
                             <!-- service img -->
-                            <a href="#"><img src="<%=request.getContextPath() %>/files/<%=objPost.getImage() %>" alt="" class="img-responsive" style="height:200px;"></a>
+                            <a href="<%=request.getContextPath()%>/detailIntroduce?id=<%=objPost.getId() %>"><img src="<%=request.getContextPath() %>/files/<%=objPost.getImage() %>" alt="" class="img-responsive" style="height:200px;"></a>
                         </div>
                         <!-- service img -->
                         <div class="service-content">
                             <!-- service content -->
-                            <h2><a href="#" class="title"><%=objPost.getName() %></a></h2>
+                            <h2><a href="<%=request.getContextPath()%>/detailIntroduce?id=<%=objPost.getId() %>" class="title"><%=objPost.getName() %></a></h2>
                             <p><%=objPost.getPreview() %></p>
                         </div>
                         <!-- service content -->
@@ -83,7 +83,7 @@
                     </p>
                 </div>
                 <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                    <a href="#" class="btn btn-white btn-lg mt20">Tham khảo các gói tập tại đây</a>
+                    <a href="<%=request.getContextPath() %>/indexTraining" class="btn btn-white btn-lg mt20">Tham khảo các gói tập tại đây</a>
                 </div>
             </div>
         </div>
@@ -115,9 +115,9 @@
                                 <p class="off-price"><%=objPro.getDiscount()%>% 0ff</p>
                             </div>
                        	<%} %>
-                        <div class="team-img" style="text-align:center;"><img style="width:153px; height:200px;" src="<%=request.getContextPath() %>/files/<%=objPro.getImage()%>"></div>
+                        <div class="team-img" style="text-align:center;"><a href="<%=request.getContextPath()%>/detailProduct?id=<%=objPro.getId()%>"><img style="width:153px; height:200px;" src="<%=request.getContextPath() %>/files/<%=objPro.getImage()%>"></a></div>
                         <div class="team-content">
-                            <h2 class="team-title"><%=objPro.getName() %></h2>
+                            <h2 class="team-title"><a href="<%=request.getContextPath()%>/detailProduct?id=<%=objPro.getId()%>"><%=objPro.getName() %></a></h2>
                             <input id="star-rating-demo" value="<%=objPro.getTbc() %>" type="number" productId = "<%=objPro.getId() %>" class="rating" min=0 max=5 step=0.1 data-size="lg">
                             <p><%=objPro.getPreview() %></p>
                             <div class="team-meta"><span class="team-designation" style="font-size:25px;"><%=price %> VNĐ</span></div>
@@ -202,7 +202,7 @@
                             <h2><a href="#" class="title"><%=objTraining.getName() %></a></h2>
                             <p class="meta"> <span class="meta-date" style="color:#0eb769; font-size:20px;"> <%=price %> VNĐ</span>  </p>
                             <p><%=objTraining.getPreview() %></p>
-                            <a href="#" class="btn btn-default">Xem thêm</a> </div>
+                        </div>
                     </div>
                     <!-- /.post block -->
                 </div>

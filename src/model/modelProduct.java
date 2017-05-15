@@ -706,4 +706,31 @@ public class modelProduct {
 		}
 		return alOrder;
 	}
+	public float getAverageItem(int id) {
+		float average = 0.0f;
+		String sql = "SELECT average from average_product where product_id = ?";
+		conn = mConnect.getConnectSQL();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, id);
+			rs = pst.executeQuery();
+			if (rs.next()) {
+				average = rs.getFloat("average");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return average;
+	}
+
 }
